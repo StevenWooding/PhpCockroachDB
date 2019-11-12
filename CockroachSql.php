@@ -1,5 +1,6 @@
 <?php
 
+
 /**
  * Set the environment variables :
  * SLITE_LIB_PHP_PGSQL_NAME
@@ -67,11 +68,18 @@ class CockroachSql
 		return null;
 	}
 	
+	public function getRow($sql)
+	{
+		$data = $this->get($sql);
+		if($data!=null) return $data[0];
+		return null;
+	}
+	
 	public function getCell($sql)
 	{
 		$data = $this->get($sql);
 		if($data!=null) foreach($data[0] as $value) return $value;
-		else return null;
+		return null;
 	}
 	
 	public function put($sql)
